@@ -5,11 +5,13 @@ import { fetchUsers } from '../actions';
 class UserHeader extends Component {
     componentDidMount() {
         this.props.fetchUsers(this.props.userId);
-        console.log(this.props.users);
+        // console.log(this.props.users);
     }
     render() {
-        console.log(this.props.users);
-        const user = this.props.users.find(user => user.id === this.props.userId);
+        // console.log(this.props.users);
+        // const user = this.props.users.find(user => user.id === this.props.userId);
+        const { user } = this.props;
+        console.log(user);
         if (!user) {
             return null;
         }
@@ -19,10 +21,10 @@ class UserHeader extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        users: state.user
-    }
+        user: state.user.find(user => user.id === ownProps.userId)
+    };
 }
 
 export default connect(mapStateToProps, { fetchUsers })(UserHeader);
