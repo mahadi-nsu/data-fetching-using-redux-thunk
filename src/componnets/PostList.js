@@ -6,14 +6,17 @@ import reducers from '../reducers';
 
 
 class PostList extends Component {
-    componentDidMount() {
-        console.log(this.props.fetchPosts());
+    // componentDidMount() {
+    //     console.log(this.props.fetchPosts());
+    // }
+    postfetch() {
+        this.props.fetchPosts();
     }
     render() {
         console.log(this.props.posts.data);
         return (
             <div>
-                posts liste goes here
+                <button onClick={() => { this.postfetch() }}>fetch datas</button>
             </div>
         )
     }
